@@ -50,7 +50,7 @@ evaluation in recursion.
 expression1(subExpr...) + expression1(subExpr2...)`
 
 ## How to Run
-`java -jar simple-calculator-0.0.1-SNAPSHOT.jar arg1 arg 2` where:
+`java -jar simple-calculator-0.0.1-SNAPSHOT.jar arg1 arg2` where:
 - arg1 = Mathematical Expression `(let(a, 5, add(a, a)))`
 - arg2 = Log Level `(ERROR, WARN, INFO, DEBUG, TRACE, ALL)`
 
