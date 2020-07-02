@@ -57,7 +57,7 @@ expression1(subExpr...) + expression1(subExpr2...)`
 ## Built With
  
  * [IntelliJ](https://www.jetbrains.com/idea/) - IDE used for Development
- * [NodeJS](https://java.com/) -  Project development language
+ * [Java](https://java.com/) -  Project development language
  * [Travis CI](https://travis-ci.org/) - CI for the project
  
 ## Authors
