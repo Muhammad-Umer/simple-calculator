@@ -14,7 +14,7 @@ Main mathematical functions which are catered are as under
 4) Division
 
 Apart from these, there is another expression called `let` which is used for assigning data
-to a variable and then use it for evaluation further mathematical functions. 
+to a variable and then using it for evaluating further mathematical functions. 
 
 ## Examples
 Some of the example inputs and respective output is given below: 
