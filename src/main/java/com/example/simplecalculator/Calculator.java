@@ -4,6 +4,7 @@ import com.example.simplecalculator.parser.ExpressionParser;
 import com.example.simplecalculator.validator.Validator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -61,41 +62,29 @@ public class Calculator {
     private double add(String x, Map<String, Double> state) {
         log.info("adding.... {}", x);
 
-        int firstComma = expressionParser.getBlockIdx(x);
-        String p1 = x.substring(0, firstComma).trim();
-        String p2 = x.substring(firstComma + 1).trim();
-
-        return execute(p1, state) + execute(p2, state);
+        Pair<String, String> subExpressions = expressionParser.getSubExpressions(x);
+        return execute(subExpressions.getLeft(), state) + execute(subExpressions.getRight(), state);
     }
 
     private double subtract(String x, Map<String, Double> state) {
         log.info("subtracting.... {}", x);
 
-        int firstComma = expressionParser.getBlockIdx(x);
-        String p1 = x.substring(0, firstComma).trim();
-        String p2 = x.substring(firstComma + 1).trim();
-
-        return execute(p1, state) - execute(p2, state);
+        Pair<String, String> subExpressions = expressionParser.getSubExpressions(x);
+        return execute(subExpressions.getLeft(), state) - execute(subExpressions.getRight(), state);
     }
 
     private double multiply(String x, Map<String, Double> state) {
         log.info("multiplying .... {}", x);
 
-        int firstComma = expressionParser.getBlockIdx(x);
-        String p1 = x.substring(0, firstComma).trim();
-        String p2 = x.substring(firstComma + 1).trim();
-
-        return execute(p1, state) * execute(p2, state);
+        Pair<String, String> subExpressions = expressionParser.getSubExpressions(x);
+        return execute(subExpressions.getLeft(), state) * execute(subExpressions.getRight(), state);
     }
 
     private double divide(String x, Map<String, Double> state) {
         log.info("dividing.... {}", x);
 
-        int firstComma = expressionParser.getBlockIdx(x);
-        String p1 = x.substring(0, firstComma).trim();
-        String p2 = x.substring(firstComma + 1).trim();
-
-        return execute(p1, state) / execute(p2, state);
+        Pair<String, String> subExpressions = expressionParser.getSubExpressions(x);
+        return execute(subExpressions.getLeft(), state) / execute(subExpressions.getRight(), state);
     }
 
     private double let(String x, Map<String, Double> state) {
@@ -128,6 +117,7 @@ public class Calculator {
         double result = execute(p2, state);
         Map<String, Double> newState = new HashMap<>(state);
         newState.put(p1, result);
+
         return execute(p3, newState);
     }
 }
