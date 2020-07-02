@@ -1,5 +1,6 @@
 package com.example.simplecalculator;
 
+import com.example.simplecalculator.parser.ExpressionParser;
 import com.example.simplecalculator.validator.Validator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -20,9 +20,13 @@ public class SimpleCalculatorApplication {
 
     public static void main(String[] args) throws Exception {
         ApplicationContext applicationContext = SpringApplication.run(SimpleCalculatorApplication.class, args);
-        String exp = "let(a, let(b, 10, add(b, b)), let(b, 20, add(a, b))";
-        String exp1 = "add(1, 2)";
+        Calculator calculator = applicationContext.getBean(Calculator.class);
 
+        String expression = initExpression(args);
+        System.out.println("This is the result: " + calculator.calculate(expression));
+    }
+
+    private static String initExpression(String[] args) throws Exception {
         if (args.length == 0 || StringUtils.isEmpty(args[0])) {
             throw new Exception("No expression found.");
         }
@@ -30,7 +34,6 @@ public class SimpleCalculatorApplication {
 
         if (args.length > 1 && !StringUtils.isEmpty(args[1])) {
             log.info("Logging Level......: " + args[1]);
-
             try {
                 ch.qos.logback.classic.Logger logger = (ch.qos.logback.classic.Logger)LoggerFactory.getLogger("com.example.simplecalculator");
                 logger.setLevel(Level.toLevel(args[1]));
@@ -38,8 +41,6 @@ public class SimpleCalculatorApplication {
                 throw new Exception("Logging Level could not be set. Aborting.....", e);
             }
         }
-
-        Calculator calculator = applicationContext.getBean(Calculator.class);
-        System.out.println(calculator.calculate(expression));
+        return expression;
     }
 }
