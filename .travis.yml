@@ -25,5 +25,5 @@ before_install:
 
 # This is to enable CodeCov's coverage
 # If a build is successful, the code is submitted for coverage analysis
-install: pip install codecov
-after_success: codecov
+# install: pip install codecov
+# after_success: codecov
