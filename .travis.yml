@@ -11,6 +11,12 @@ jdk:
   - openjdk8
   - openjdk11
 
+# We will use Ubuntu 18.04 (bionic beaver). List of options:
+# https://docs.travis-ci.com/user/reference/overview/#linux
+dist: xenial
+
+before_install:
+  - chmod +x mvnw
 # Each job in Travis CI has several steps:
 # https://docs.travis-ci.com/user/job-lifecycle/
 # The 'language: java' directive sets up sane defaults to test common java applications
